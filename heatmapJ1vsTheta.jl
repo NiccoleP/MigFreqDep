@@ -159,3 +159,150 @@ end
 savefig(hmp, "$dir/hmpJ1_m_vs_theta.png")
 savefig(hmp, "$dir/hmpJ1_m_vs_theta.svg")
 
+# Similarly, for J0 heatmap:
+
+# make dictionary for J0 values 
+J0_values = Dict()
+for i in 1:length(m_values)
+    m_ = round(m_values[i], digits = 4)
+    rsims = results_ibd[i][49000:50000,:] # get mean over the last 10,000 generations 
+    J0_values[m_] = [mean(rsims.J0Gen1),
+                    mean(rsims.J0Unb1),
+                    mean(rsims.J0Con1P1), 
+                    mean(rsims.J0Con2P1),  
+                    mean(rsims.J0Con3P1),
+                    mean(rsims.J0Con4P1),
+                    mean(rsims.J0Con5P1),
+                    mean(rsims.J0Con6P1), 
+                    mean(rsims.J0Con7P1),  
+                    mean(rsims.J0Con8P1),
+                    mean(rsims.J0Con9P1),
+                    mean(rsims.J0Con10P1),
+                    mean(rsims.J0Con11P1),
+                    mean(rsims.J0Con12P1),
+                    mean(rsims.J0Con13P1),
+                    mean(rsims.J0Con14P1),
+                    mean(rsims.J0Con15P1),
+                    mean(rsims.J0Con16P1),
+                    mean(rsims.J0Con17P1),
+                    mean(rsims.J0Con18P1),
+                    mean(rsims.J0Con19P1),
+                    mean(rsims.J0Con20P1)]
+end
+
+theta_values = ["G","U",θ1, θ2, θ3, θ4, θ5, θ6, θ7, θ8, θ9, θ10, θ11, θ12, θ13, θ14, θ15, θ16, θ17, θ18, θ19, θ20]
+sorted_m_values = sort(collect(keys(J0_values)))  
+J0_means = hcat([J0_values[m] for m in sorted_m_values]...) 
+
+xlabel = string.(theta_values)
+ylabel = string.(m_values)
+
+color_palette = cgrad(:Spectral,10000)
+hmp = heatmap(transpose(J0_means),
+        xticks=(1:length(theta_values), xlabel),  
+        yticks=(1:length(m_values), ylabel),    
+        fill_z=transpose(J0_means), 
+        aspect_ratio=:equal,
+        xlabel = "\$\\theta\$",
+        ylabel = "\$m\$",
+        colorbar_title = "\$Similarity \\ within \\ populations \\ \\ J_0 \$",
+        color=color_palette,
+        tickfont=font(6), xrotation=45, dpi= 1000)
+
+savefig(hmp, "$dir/hmpJ0_m_vs_theta.png")
+savefig(hmp, "$dir/hmpJ0_m_vs_theta.svg")
+
+
+
+# Calculating I 
+
+all_I = Vector{Vector{Float64}}(undef, length(m_values))
+all_D = Vector{Vector{Float64}}(undef, length(m_values))
+
+for i in 1:length(m_values)
+        m_ = m_values[i]
+        rsims = results_ibd[i][49000:50000,:]
+        J0_values= [mean(rsims.J0Gen1), # get J0 values 
+                    mean(rsims.J0Unb1),
+                    mean(rsims.J0Con1P1), 
+                    mean(rsims.J0Con2P1),  
+                    mean(rsims.J0Con3P1),
+                    mean(rsims.J0Con4P1),
+                    mean(rsims.J0Con5P1),
+                    mean(rsims.J0Con6P1), 
+                    mean(rsims.J0Con7P1),  
+                    mean(rsims.J0Con8P1),
+                    mean(rsims.J0Con9P1),
+                    mean(rsims.J0Con10P1),
+                    mean(rsims.J0Con11P1),
+                    mean(rsims.J0Con12P1),
+                    mean(rsims.J0Con13P1),
+                    mean(rsims.J0Con14P1),
+                    mean(rsims.J0Con15P1),
+                    mean(rsims.J0Con16P1),
+                    mean(rsims.J0Con17P1),
+                    mean(rsims.J0Con18P1),
+                    mean(rsims.J0Con19P1),
+                    mean(rsims.J0Con20P1)]
+
+        J1_values= [mean(rsims.J1Gen), # get J1 values
+                    mean(rsims.J1Unb),
+                    mean(rsims.J1Con1), 
+                    mean(rsims.J1Con2),  
+                    mean(rsims.J1Con3),
+                    mean(rsims.J1Con4),
+                    mean(rsims.J1Con5),
+                    mean(rsims.J1Con6), 
+                    mean(rsims.J1Con7),  
+                    mean(rsims.J1Con8),
+                    mean(rsims.J1Con9),
+                    mean(rsims.J1Con10),
+                    mean(rsims.J1Con11),
+                    mean(rsims.J1Con12),
+                    mean(rsims.J1Con13),
+                    mean(rsims.J1Con14),
+                    mean(rsims.J1Con15),
+                    mean(rsims.J1Con16),
+                    mean(rsims.J1Con17),
+                    mean(rsims.J1Con18),
+                    mean(rsims.J1Con19),
+                    mean(rsims.J1Con20)]
+        
+        I = J1_values ./ J0_values # calculate ratio 
+        #I = J1_values ./ (J0_values).^1/2
+        D = -log.(I) # Nei's distance
+        all_I[i] = I
+        all_D[i] = D
+end
+
+D_matrix = hcat(all_D...)'  # rows = m_values, columns = traits (transpose to match)
+xlabel = string.(theta_values)
+ylabel = string.(m_values)
+color_palette = cgrad(:Spectral,10000)
+d_distance = heatmap(1:length(theta_values),        
+        1:length(m_values),            
+        D_matrix,                     
+        xticks=(1:length(theta_values), xlabel),
+        yticks=(1:length(m_values), ylabel),
+        xlabel = "\$traits\$",
+        ylabel = "\$m\$",
+        colorbar_title = "D",
+        color = color_palette,
+        aspect_ratio = :equal,  xrotation=45, dpi = 2000)
+savefig(d_distance,"$dir/d_distance.svg")
+savefig(d_distance,"$dir/d_distance.png")
+
+
+# D_gen = [d[1] for d in all_D]   # index 1 = Gen
+# D_unb = [d[2] for d in all_D]   # index 2 = Unb
+# D_con1 = [d[3] for d in all_D]
+# D_con2 = [d[4] for d in all_D]
+# D_con3 = [d[5] for d in all_D]
+# D_con4 = [d[6] for d in all_D]
+# D_con5 = [d[7] for d in all_D]
+# D_con6 = [d[8] for d in all_D]
+# D_con7 = [d[9] for d in all_D]
+# D_con8 = [d[10] for d in all_D]
+# D_con9 = [d[11] for d in all_D]
+# D_con10 = [d[12] for d in all_D]
+# D_con11 = [d[13] for d in all_D]
