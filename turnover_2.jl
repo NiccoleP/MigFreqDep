@@ -15,15 +15,15 @@ m_values = [0.0001, 0.0005, 0.001, 0.0015, 0.002, 0.0025, 0.003, 0.0035, 0.004]
 nGen = 500000
 reps = 5000
 # ~~~~~~~~~~~~~~~~~~~~~~ specify directories ~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-dir = "/Users/niccole/Documents/MIGRATION/OUTPUT/turnover/"
-files = ["/Users/niccole/Documents/MIGRATION/OUTPUT/turnover/df_N_1000_m_0.0001_u_0.0001_nu_0.0001_nGen_500000_reps_1000_θsweep_25-05-20.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/turnover/df_N_1000_m_0.0001_u_0.0001_nu_0.0005_nGen_500000_reps_1000_θsweep_25-05-21.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/turnover/df_N_1000_m_0.0005_u_0.0001_nu_0.0001_nGen_500000_reps_1000_θsweep_25-05-20.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/turnover/df_N_1000_m_0.0005_u_0.0001_nu_0.0005_nGen_500000_reps_1000_θsweep_25-05-21.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/turnover/df_N_1000_m_0.001_u_0.0001_nu_0.0001_nGen_500000_reps_1000_θsweep_25-05-20.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/turnover/df_N_1000_m_0.001_u_0.0001_nu_0.0005_nGen_500000_reps_1000_θsweep_25-05-21.csv", 
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/turnover/df_N_1000_m_0.002_u_0.0001_nu_0.0001_nGen_500000_reps_1000_θsweep_25-05-20.csv", 
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/turnover/df_N_1000_m_0.002_u_0.0001_nu_0.0005_nGen_500000_reps_1000_θsweep_25-05-21.csv"]
+dir = "/Documents/MIGRATION/OUTPUT/turnover/"
+files = ["/Documents/MIGRATION/OUTPUT/turnover/df_N_1000_m_0.0001_u_0.0001_nu_0.0001_nGen_500000_reps_1000_θsweep_25-05-20.csv",
+         "/Documents/MIGRATION/OUTPUT/turnover/df_N_1000_m_0.0001_u_0.0001_nu_0.0005_nGen_500000_reps_1000_θsweep_25-05-21.csv",
+         "/Documents/MIGRATION/OUTPUT/turnover/df_N_1000_m_0.0005_u_0.0001_nu_0.0001_nGen_500000_reps_1000_θsweep_25-05-20.csv",
+         "/Documents/MIGRATION/OUTPUT/turnover/df_N_1000_m_0.0005_u_0.0001_nu_0.0005_nGen_500000_reps_1000_θsweep_25-05-21.csv",
+         "/Documents/MIGRATION/OUTPUT/turnover/df_N_1000_m_0.001_u_0.0001_nu_0.0001_nGen_500000_reps_1000_θsweep_25-05-20.csv",
+         "/Documents/MIGRATION/OUTPUT/turnover/df_N_1000_m_0.001_u_0.0001_nu_0.0005_nGen_500000_reps_1000_θsweep_25-05-21.csv", 
+         "/Documents/MIGRATION/OUTPUT/turnover/df_N_1000_m_0.002_u_0.0001_nu_0.0001_nGen_500000_reps_1000_θsweep_25-05-20.csv", 
+         "/Documents/MIGRATION/OUTPUT/turnover/df_N_1000_m_0.002_u_0.0001_nu_0.0005_nGen_500000_reps_1000_θsweep_25-05-21.csv"]
 
 m_values = ["0.0001", "0.0001", "0.0005", "0.0005", "0.001", "0.001", "0.002", "0.002"]
 nu_values = ["0.0001", "0.0005", "0.0001", "0.0005", "0.0001", "0.0005", "0.0001", "0.0005"]

@@ -14,12 +14,12 @@ Plotting code for all figure in the manuscript
 - Figure 3: heatmapTimevsTheta.jl
 - Figure 4: VariantsSharedTotalUnique.jl
 
-Figures in the Supplementary were produced with the same code as the figures in the main text, the difference was the input used. 
+Figures in the Supplementary were produced with the same code as the figures in the main text, the difference was the input used (which comes from runs with different parameter setting). 
 
 Plotting code for additional Supplementary figures: 
 
 - J0 heatmap -> included in heatmapJ1vsTheta.jl
 - Nei's distance heatmap -> included in heatmapJ1vsTheta.jl 
-- turnover rates: turnover_1.jl reads individual replicate files and outputs a file containing turnover rates; turnover_2.jl reads the output from turnover_1.jl and plots it. 
+- turnover rates: turnover_1.jl reads individual replicate files and outputs a file containing turnover rates (this is done because the script is run in a server and the output files are hgue, therefore it is easier to read and summarize the individual files inside the server and only export the turnover rates); turnover_2.jl reads the output from turnover_1.jl and plots it. 
 - frequency of the most common variant: FreqMostAbVariant.jl
 

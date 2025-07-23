@@ -7,8 +7,10 @@ using StatsPlots
 using Statistics
 ENV["GKSwstype"] = "nul"
 # ~~~~~~~~~~~~~~~~~~~~~~ specify columns and values for reading and plotting ~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-
-colnames = [:nVarP1Gen, :nVarP2Gen, :shVarGen, :abVarP1Gen, :fabVarP1Gen, :abVarP2Gen, :fabVarP2Gen, :tVarsGen,
+# number of variants in population 1, number of variants in population 2, shared variants, 
+# most abundant variant in population 1, frequency of the most abundant variant in population 1 
+# most abundant variant in population 2, frequency of the most abundant variant in population 2 and total number of variants in the population 
+colnames = [:nVarP1Gen, :nVarP2Gen, :shVarGen, :abVarP1Gen, :fabVarP1Gen, :abVarP2Gen, :fabVarP2Gen, :tVarsGen, 
             :nVarP1Unb, :nVarP2Unb, :shVarUnb, :abVarP1Unb, :fabVarP1Unb, :abVarP2Unb, :fabVarP2Unb, :tVarsUnb,
             :nVarP1Con1, :nVarP2Con1, :shVarCon1, :abVarP1Con1, :fabVarP1Con1, :abVarP2Con1, :fabVarP2Con1, :tVarsCon1,
             :nVarP1Con2, :nVarP2Con2, :shVarCon2, :abVarP1Con2, :fabVarP1Con2, :abVarP2Con2, :fabVarP2Con2, :tVarsCon2,
@@ -30,7 +32,7 @@ colnames = [:nVarP1Gen, :nVarP2Gen, :shVarGen, :abVarP1Gen, :fabVarP1Gen, :abVar
             :nVarP1Con18, :nVarP2Con18, :shVarCon18, :abVarP1Con18, :fabVarP1Con18, :abVarP2Con18, :fabVarP2Con18, :tVarsCon18,
             :nVarP1Con19, :nVarP2Con19, :shVarCon19, :abVarP1Con19, :fabVarP1Con19, :abVarP2Con19, :fabVarP2Con19, :tVarsCon19,
             :nVarP1Con20, :nVarP2Con20, :shVarCon20, :abVarP1Con20, :fabVarP1Con20, :abVarP2Con20, :fabVarP2Con20, :tVarsCon20]
-begin
+begin # theta values 
         θ1 = 0.001
         θ2 = 0.002
         θ3 = 0.003
@@ -52,11 +54,12 @@ begin
         θ19 = 0.019
         θ20 = 0.02
 end
-fabVars = [:fabVarP1Gen, :fabVarP1Unb, :fabVarP1Con1, :fabVarP1Con2, :fabVarP1Con3, :fabVarP1Con4, :fabVarP1Con5,
+# selection of columns: frequency of the most abundant variant per theta 
+fabVars = [:fabVarP1Gen, :fabVarP1Unb, :fabVarP1Con1, :fabVarP1Con2, :fabVarP1Con3, :fabVarP1Con4, :fabVarP1Con5, 
           :fabVarP1Con6, :fabVarP1Con7, :fabVarP1Con8, :fabVarP1Con9, :fabVarP1Con10, :fabVarP1Con11,
           :fabVarP1Con12, :fabVarP1Con13, :fabVarP1Con14, :fabVarP1Con15, :fabVarP1Con16, :fabVarP1Con17,
           :fabVarP1Con18, :fabVarP1Con19, :fabVarP1Con20]
-x_values = ["G","U", θ1, θ2, θ3, θ4, θ5, θ6, θ7, θ8, θ9, θ10, θ11, θ12, θ13, θ14, θ15, θ16, θ17, θ18, θ19, θ20]
+x_values = ["G","U", θ1, θ2, θ3, θ4, θ5, θ6, θ7, θ8, θ9, θ10, θ11, θ12, θ13, θ14, θ15, θ16, θ17, θ18, θ19, θ20] # values for x axis 
 
 # ~~~~~~~~~~~~~~~~~~~~~~ plot per m rate ~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 m = 0.004
@@ -80,9 +83,9 @@ p = violin([fabVar_df[!,col] for col in fabVars], # plot
 x_ticks = 1:length(fabVars), x_values
 plot!(p, xticks=x_ticks, xrotation=45)
 scatter!(p, means, color=:darkblue, marker=:circle, markerstrokewidth=0, markersize=1.5)
-savefig(p, "frequency_most_abundant_variant_m_$(m)_reps_100.svg") # save figure 
+savefig(p, "frequency_most_abundant_variant_m_$(m)_reps_100.svg") # save figure; change ending for png format 
 
-
+# repeat for other m rates 
 
 m = 0.0035
 files = readdir("RESULTS/N_1000_m_0.0035_u_0.0001_nu_0.0001_nGen_500000_reps_100_θsweep_25-04-03_3", join=true)

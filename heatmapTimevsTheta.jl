@@ -52,16 +52,16 @@ begin
     theta_values = ["G","U",θ1, θ2, θ3, θ4, θ5, θ6, θ7, θ8, θ9, θ10, θ11, θ12, θ13, θ14, θ15, θ16, θ17, θ18, θ19, θ20]
 end
 # ~~~~~~~~~~~~~~~~~~~~~~ specify directories ~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-dir = "/Users/niccole/Documents/MIGRATION/OUTPUT/" # change path to your local directory 
-files = ["/Users/niccole/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.0001_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.0005_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.001_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.0015_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.002_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.0025_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.003_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.0035_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.004_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv"]
+dir = "/Documents/MIGRATION/OUTPUT/" # change path to your local directory 
+files = ["/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.0001_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
+         "/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.0005_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
+         "/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.001_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
+         "/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.0015_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
+         "/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.002_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
+         "/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.0025_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
+         "/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.003_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
+         "/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.0035_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
+         "/Documents/MIGRATION/OUTPUT/sum_VariantsSummary_N_1000_m_0.004_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv"]
 # ~~~~~~~~~~~~~~~~~~~~~~ read the files ~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 results = read_summed_files(files)
 for i in eachindex(results)

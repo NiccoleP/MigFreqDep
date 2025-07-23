@@ -52,15 +52,15 @@ begin
     theta_values = ["G","U",θ1, θ2, θ3, θ4, θ5, θ6, θ7, θ8, θ9, θ10, θ11, θ12, θ13, θ14, θ15, θ16, θ17, θ18, θ19, θ20]
 end
 # ~~~~~~~~~~~~~~~~~~~~~~ specify directories ~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-files_ibd = ["/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.0001_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
-             "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.0005_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
-             "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.001_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
-             "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.0015_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
-             "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.002_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
-             "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.0025_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
-             "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.003_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv", 
-             "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.0035_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
-             "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.004_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv"]
+files_ibd = ["/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.0001_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
+             "/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.0005_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
+             "/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.001_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
+             "/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.0015_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
+             "/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.002_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
+             "/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.0025_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
+             "/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.003_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv", 
+             "/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.0035_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv",
+             "/Documents/MIGRATION/OUTPUT/Variants/sum_IBD_N_1000_m_0.004_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02.csv"]
 # ~~~~~~~~~~~~~~~~~~~~~~ read the files ~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 results_ibd = read_summed_files(files_ibd)
 for i in eachindex(results_ibd)
@@ -190,8 +190,8 @@ for i in 1:length(m_values)
                     mean(rsims.J0Con20P1)]
 end
 
-theta_values = ["G","U",θ1, θ2, θ3, θ4, θ5, θ6, θ7, θ8, θ9, θ10, θ11, θ12, θ13, θ14, θ15, θ16, θ17, θ18, θ19, θ20]
-sorted_m_values = sort(collect(keys(J0_values)))  
+theta_values = ["G","U",θ1, θ2, θ3, θ4, θ5, θ6, θ7, θ8, θ9, θ10, θ11, θ12, θ13, θ14, θ15, θ16, θ17, θ18, θ19, θ20] # for x axis 
+sorted_m_values = sort(collect(keys(J0_values)))  # in case they are not ordered 
 J0_means = hcat([J0_values[m] for m in sorted_m_values]...) 
 
 xlabel = string.(theta_values)
@@ -269,7 +269,7 @@ for i in 1:length(m_values)
                     mean(rsims.J1Con20)]
         
         I = J1_values ./ J0_values # calculate ratio 
-        #I = J1_values ./ (J0_values).^1/2
+        # I = J1_values ./ (J0_values).^1/2
         D = -log.(I) # Nei's distance
         all_I[i] = I
         all_D[i] = D
@@ -289,20 +289,8 @@ d_distance = heatmap(1:length(theta_values),
         colorbar_title = "D",
         color = color_palette,
         aspect_ratio = :equal,  xrotation=45, dpi = 2000)
+
+# save figure 
 savefig(d_distance,"$dir/d_distance.svg")
 savefig(d_distance,"$dir/d_distance.png")
 
-
-# D_gen = [d[1] for d in all_D]   # index 1 = Gen
-# D_unb = [d[2] for d in all_D]   # index 2 = Unb
-# D_con1 = [d[3] for d in all_D]
-# D_con2 = [d[4] for d in all_D]
-# D_con3 = [d[5] for d in all_D]
-# D_con4 = [d[6] for d in all_D]
-# D_con5 = [d[7] for d in all_D]
-# D_con6 = [d[8] for d in all_D]
-# D_con7 = [d[9] for d in all_D]
-# D_con8 = [d[10] for d in all_D]
-# D_con9 = [d[11] for d in all_D]
-# D_con10 = [d[12] for d in all_D]
-# D_con11 = [d[13] for d in all_D]

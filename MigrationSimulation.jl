@@ -540,7 +540,7 @@ begin
                              :nVarP1Con20, :nVarP2Con20, :shVarCon20, :abVarP1Con20, :fabVarP1Con20, :abVarP2Con20, :fabVarP2Con20, :tVarCon20]
             df = DataFrame(VarsSum, :auto)
             rename!(df, summary_names)
-            CSV.write(joinpath(summary_dir, "sum_VariantsSummary_N_$(N)_m_$(m)_u_$(u)_nu_$(nu)_reps_$(reps)_thetaθ1$(θ1)toθ11$(θ20)_3.csv"),df)
+            CSV.write(joinpath(summary_dir, "sum_VariantsSummary_N_$(N)_m_$(m)_u_$(u)_nu_$(nu)_reps_$(reps)_thetaθ1$(θ1)toθ11$(θ20).csv"),df) 
         end
 
         if getSumFST 
@@ -600,9 +600,9 @@ end
 
 # MAIN 
 @everywhere timestamp = Dates.format(now(), "yy-mm-dd")
-@everywhere dir = "/home/niccole_porras_alvarez/J0_J1/RESULTS/N_$(N)_m_$(m)_u_$(u)_nu_$(nu)_nGen_$(nGen)_reps_$(reps)_θsweep_$(timestamp)" # output directory for individual files 
+@everywhere dir = "./RESULTS/N_$(N)_m_$(m)_u_$(u)_nu_$(nu)_nGen_$(nGen)_reps_$(reps)_θsweep_$(timestamp)" # output directory for individual files 
 mkdir(dir) # create output directory 
-summary_dir = "/home/niccole_porras_alvarez/J0_J1/SUMMARY_FILES" # output directory for summary files
+summary_dir = "./SUMMARY_FILES" # output directory for summary files
 
 run_simulation(reps, tsamps, N, u, nu, θ1, θ2, θ3, θ4, θ5, θ6, θ7, θ8, θ9, θ10, θ11, θ12, θ13, θ14, θ15, θ16, θ17, θ18, θ19, θ20, m, nGen, numTraits) # run simulations
 

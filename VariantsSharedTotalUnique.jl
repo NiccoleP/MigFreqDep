@@ -30,7 +30,7 @@ nu_ = round(nu, digits = 6)
 m_values = [0.0001, 0.0005, 0.001, 0.0015, 0.002, 0.0025, 0.003, 0.0035, 0.004] 
 nGen = 500000
 reps = 5000
-begin
+begin # theta values 
     θ1 = 0.001
     θ2 = 0.002
     θ3 = 0.003
@@ -53,16 +53,16 @@ begin
     θ20 = 0.02 
 end
 # ~~~~~~~~~~~~~~~~~~~~~~ specify directories ~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-dir = "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants"
-files = ["/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.0001_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.0005_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.001_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.0015_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.002_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.0025_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.003_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.0035_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv",
-         "/Users/niccole/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.004_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv"]
+dir = "/Documents/MIGRATION/OUTPUT/Variants"
+files = ["/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.0001_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv",
+         "/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.0005_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv",
+         "/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.001_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv",
+         "/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.0015_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv",
+         "/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.002_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv",
+         "/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.0025_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv",
+         "/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.003_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv",
+         "/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.0035_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv",
+         "/Documents/MIGRATION/OUTPUT/Variants/sum_VariantsSummary_N_1000_m_0.004_u_0.0001_nu_0.0001_reps_5000_thetaθ10.001toθ110.02_2.csv"]
 # ~~~~~~~~~~~~~~~~~~~~~~ read the files ~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 results = read_summed_files(files)
 for i in eachindex(results)
@@ -87,7 +87,7 @@ function prepare_dicts(shVar_columns, tVar_columns, nVar_columns)
     end
     return unique_dict, shared_dict, total_dict
 end
-function custom_spectral(n) # Removes annoying yellow color in the middle of th pallette
+function custom_spectral(n) # Removes yellow color in the middle of the pallette
     full = cgrad(:Spectral, 100, categorical=false)
     left = full.colors[1:40]      
     right = full.colors[61:end]    
@@ -134,14 +134,13 @@ nVar_columns_row2 = [:nVarP1Con1, :nVarP1Con15, :nVarP1Con20]
 # extract columns from results and pass to dictionaries 
 unique_dict1, shared_dict1, total_dict1 = prepare_dicts(shVar_columns_row1, tVar_columns_row1, nVar_columns_row1)
 unique_dict2, shared_dict2, total_dict2 = prepare_dicts(shVar_columns_row2, tVar_columns_row2, nVar_columns_row2)
-
+# make plots 
 row1_plots = make_plot_set(nVar_columns_row1, shVar_columns_row1, tVar_columns_row1, theta_labels_row1, unique_dict1, shared_dict1, total_dict1)
 row2_plots = make_plot_set(nVar_columns_row2, shVar_columns_row2, tVar_columns_row2, theta_labels_row2, unique_dict2, shared_dict2, total_dict2)
 empty_spot = plot(title="", framestyle=:none, grid=false, axis=false)
 row1_plots_with_blank = vcat(row1_plots, [empty_spot])  
 
 p = plot(row1_plots_with_blank..., row2_plots...; layout=(2, 3), size=(1800, 1000), bottom_margin=10mm,  left_margin=15mm, right_margin = 10mm)
-
 
 # save figure
 # savefig(p, "$dir/together_total_shared_unique.png")

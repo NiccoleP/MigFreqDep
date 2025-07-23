@@ -25,7 +25,7 @@ nu = 10^-4                                  # innovation rate
 nu_ = round(nu, digits = 6)                 # modify for figure output
 m_values = [0.0001, 0.0005, 0.001, 0.002]   # migration rates
 nGen = 500000                               # number of generations simulations ran for
-reps = 5000                                # number of replicates
+reps = 5000                                 # number of replicates
 θ0 = 0                                      # unbiased trait
 θ1  = -0.020                                # θ1 to θ8 are anti conformity values 
 θ2  = -0.015  
@@ -48,12 +48,12 @@ reps = 5000                                # number of replicates
 θ19 = 0.018
 θ20 = 0.020
 # ~~~~~~~~~~~~~~~~~~~~~~ specify directories ~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-dir = "/Users/niccole/MigFreqDep/OUTPUT/EqPlot/" # Change directory to whererever you have your output files 
-files = ["/Users/niccole/MigFreqDep/OUTPUT/EqPlot/sum_IBD_N_1000_m_0.0001_u_0.0001_nu_0.0001_reps_5000_thetaθ1-0.02toθ110.02.csv",
-         "/Users/niccole/MigFreqDep/MIGRATION/OUTPUT/EqPlot/sum_IBD_N_1000_m_0.0005_u_0.0001_nu_0.0001_reps_5000_thetaθ1-0.02toθ110.02.csv",
-         "/Users/niccole/MigFreqDep/MIGRATION/OUTPUT/EqPlot/sum_IBD_N_1000_m_0.001_u_0.0001_nu_0.0001_reps_5000_thetaθ1-0.02toθ110.02.csv",
-         "/Users/niccole/MigFreqDep/MIGRATION/OUTPUT/EqPlot/sum_IBD_N_1000_m_0.002_u_0.0001_nu_0.0001_reps_5000_thetaθ1-0.02toθ110.02.csv",
-         "/Users/niccole/MigFreqDep/MIGRATION/OUTPUT/EqPlot/sum_IBD_N_1000_m_0_u_0.0001_nu_0.0001_reps_5000_thetaθ1-0.02toθ110.02.csv"] # last file are runs without migration for the rug part on the bottom of the plot 
+dir = "/MigFreqDep/OUTPUT/EqPlot/" # Change directory to whererever you have your output files 
+files = ["/MigFreqDep/OUTPUT/EqPlot/sum_IBD_N_1000_m_0.0001_u_0.0001_nu_0.0001_reps_5000_thetaθ1-0.02toθ110.02.csv",
+         "/MigFreqDep/MIGRATION/OUTPUT/EqPlot/sum_IBD_N_1000_m_0.0005_u_0.0001_nu_0.0001_reps_5000_thetaθ1-0.02toθ110.02.csv",
+         "/MigFreqDep/MIGRATION/OUTPUT/EqPlot/sum_IBD_N_1000_m_0.001_u_0.0001_nu_0.0001_reps_5000_thetaθ1-0.02toθ110.02.csv",
+         "/MigFreqDep/MIGRATION/OUTPUT/EqPlot/sum_IBD_N_1000_m_0.002_u_0.0001_nu_0.0001_reps_5000_thetaθ1-0.02toθ110.02.csv",
+         "/MigFreqDep/MIGRATION/OUTPUT/EqPlot/sum_IBD_N_1000_m_0_u_0.0001_nu_0.0001_reps_5000_thetaθ1-0.02toθ110.02.csv"] # last file are runs without migration for the rug part on the bottom of the plot 
 # ~~~~~~~~~~~~~~~~~~~~~~ read the files ~~~~~~~~~~~~~~~~~~~~~~~~~~ 
 
 results = read_files(files)  # read files 
